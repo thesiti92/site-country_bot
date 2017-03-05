@@ -16,6 +16,9 @@ from chainer import cuda
 import chainer.functions as F
 import chainer.links as L
 from chainer import serializers
+import requests
+import BytesIO
+
 class RNNForLM(chainer.Chain):
 
     def __init__(self, n_vocab, n_units, train=True):
@@ -41,7 +44,7 @@ class RNNForLM(chainer.Chain):
         return y
 
 
-def gentxt(gen_model="data/650u_20p_100e.dat", primetext="when", seed = 123, unit=650, sample = 1, length = 30):
+def gentxt( primetext="when", seed = 123, unit=650, sample = 1, length = 30):
     # parser = argparse.ArgumentParser()
     # parser.add_argument('--model', '-m', type=str, required=True,
     #                     help='model data, saved by train_ptb.py')
@@ -76,7 +79,8 @@ def gentxt(gen_model="data/650u_20p_100e.dat", primetext="when", seed = 123, uni
 
     lm = RNNForLM(len(vocab), n_units, train=False)
     model = L.Classifier(lm)
-    serializers.load_npz(gen_model, model)
+    request = requests.get(https://s3.us-east-2.amazonaws.com/country-bot/650u_20p_100e.dat)
+    serializers.load_npz(BytesIO(request.content), model)
     if gpu >= 0:
         cuda.get_device(gpu).use()
         model.to_gpu()

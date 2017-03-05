@@ -3,3 +3,4 @@ chainer
 numpy
 wtforms
 six
+requests
