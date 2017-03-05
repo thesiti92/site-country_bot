@@ -17,8 +17,7 @@ import chainer.functions as F
 import chainer.links as L
 from chainer import serializers
 import requests
-import BytesIO
-
+from io import BytesIO
 class RNNForLM(chainer.Chain):
 
     def __init__(self, n_vocab, n_units, train=True):
