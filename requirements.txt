@@ -1,0 +1,5 @@
+flask
+chainer
+numpy
+wtforms
+six
