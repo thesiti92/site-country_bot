@@ -79,7 +79,7 @@ def gentxt( primetext="when", seed = 123, unit=650, sample = 1, length = 30):
 
     lm = RNNForLM(len(vocab), n_units, train=False)
     model = L.Classifier(lm)
-    request = requests.get(https://s3.us-east-2.amazonaws.com/country-bot/650u_20p_100e.dat)
+    request = requests.get("https://s3.us-east-2.amazonaws.com/country-bot/650u_20p_100e.dat")
     serializers.load_npz(BytesIO(request.content), model)
     if gpu >= 0:
         cuda.get_device(gpu).use()
