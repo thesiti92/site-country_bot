@@ -1,0 +1,19 @@
+<html>
+
+<body>
+    <div id="app" />
+    <!-- <script src="{{ url_for('static', filename='bundle.js') }}" type="text/javascript"></script> -->
+    {% from "_formhelpers.html" import render_field %}
+    <form method=post>
+        <dl>
+            {{ render_field(form.primetext) }}
+            {{ render_field(form.length) }}
+            {{ render_field(form.sample) }}
+            {{ render_field(form.seed) }}
+        </dl>
+        <p><input type=submit value=GenTxt>
+    </form>
+    {{result}}
+</body>
+
+</html>
