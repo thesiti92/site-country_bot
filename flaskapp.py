@@ -4,7 +4,7 @@ from gentxt import gentxt
 from wtforms import Form, IntegerField, StringField, validators
 
 class ParamsForm(Form):
-    primetext = StringField('Primetext', [validators.DataRequired()], default="when")
+    primetext = StringField('Primetext', [validators.DataRequired()])
     length = IntegerField('Length', default=50)
     sample = IntegerField('Sample', default=1)
     seed = IntegerField('Random Seed', default=123)
@@ -14,7 +14,7 @@ app = Flask(__name__)
 @app.route("/", methods=['GET', 'POST'])
 def index():
     form = ParamsForm(request.form)
-    if request.method == 'POST' and form.validate():
+    if request.method == 'POST' and form.validate() and form.primetext.data != "":
         flash('Generating Text')
         result = gentxt(primetext=form.primetext.data, length=form.length.data, sample=form.sample.data, seed=form.seed.data)
         if result == "unknown":
