@@ -2,6 +2,7 @@ from flask import Flask, render_template, flash, request
 
 from gentxt import gentxt
 from wtforms import Form, IntegerField, StringField, validators
+import os
 
 class ParamsForm(Form):
     primetext = StringField('Primetext', [validators.DataRequired()])
@@ -24,4 +25,5 @@ def index():
 
 if __name__ == "__main__":
     app.secret_key = 'super secret key'
-    app.run()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
